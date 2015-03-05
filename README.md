@@ -3,7 +3,7 @@
 This project provides an extremely easy-to-use tool for Apple Watch developers with which they can create gorgeous, smooth 60 FPS animations in a way that is highly optimized for WatchKit by recording arbitrary animations from an iPhone or iPad Simulator.
 
 ## The Problem
-Currently, a developer seeking to create animations for Apple Watch will require the aid of a talented designer that can break down an animation into individual "snapshots" of the animation in progress, which when stitched together form the illusion of a continuous, high frame-rate animation.
+Currently, a developer seeking to create animations for Apple Watch will require the aid of a talented designer that can break down an animation into individual "snapshots" of the animation in progress, which when stitched together form the illusion of a continuous, high frame-rate animation. This is in stark contrast to what iOS developers are accustomed to since frameworks like CoreAnimation and CoreGraphics are not at their disposal when developing for Apple Watch.
 
 ## The Solution
 ``` Swift
