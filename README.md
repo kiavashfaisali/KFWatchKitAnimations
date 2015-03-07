@@ -50,6 +50,8 @@ self.someView.snapshotsWithDuration(1.0, imageName: "fadeOutThenInView", animati
 
 Since the "animations" block in the above function is optional, you can instead implement the above example like this:
 ``` swift
+self.someView.snapshotsWithDuration(1.0, imageName: "fadeOutThenInView", animations: nil, completion: nil)
+
 UIView.animateWithDuration(0.5, animations: {
     self.someView.alpha = 0.0
 }) { finished in
@@ -57,8 +59,6 @@ UIView.animateWithDuration(0.5, animations: {
         self.someView.alpha = 1.0
     }
 }
-
-self.someView.snapshotsWithDuration(1.0, imageName: "fadeOutThenInView", animations: nil, completion: nil)
 ```
 
 While the latter solution enables you to capture snapshots of animations you may have in existing apps with very little modification to the original code, it's important to know that the former less initial internal setup overhead with greatly increased legibility, thus it is greatly preferred.
