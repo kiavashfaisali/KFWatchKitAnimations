@@ -1,11 +1,11 @@
 # KFWatchKitAnimations
 
-This project aims to provide an extremely easy-to-use tool for Apple Watch developers with which they can create gorgeous, smooth 60 FPS animations in a way that is highly optimized for WatchKit by recording arbitrary animations from an iPhone/iPad Simulator.
+This project aims to provide an extremely easy-to-use tool for  Watch developers with which they can create gorgeous, smooth 60 FPS animations in a way that is highly optimized for WatchKit by recording arbitrary animations from an iPhone/iPad Simulator.
 
 ## The Problem
-Currently, a developer seeking to create animations for Apple Watch will require the aid of a talented designer that can break down an animation into individual snapshot images of the animation in progress, which when stitched together form the illusion of a continuous, high frame-rate animation.
+Currently, a developer seeking to create animations for  Watch will require the aid of a talented designer that can break down an animation into individual snapshot images of the animation in progress, which when stitched together form the illusion of a continuous, high frame-rate animation.
 
-This is in stark contrast to what iOS developers are accustomed to since frameworks like CoreAnimation and CoreGraphics are not at their disposal when developing for Apple Watch.
+This is in stark contrast to what iOS developers are accustomed to since frameworks like CoreAnimation and CoreGraphics are not at their disposal when developing for  Watch.
 
 ## The Solution
 ``` Swift
@@ -14,7 +14,7 @@ extension UIView {
 }
 ```
 
-That's right, one function in one file - KFWatchKitAnimations.swift - without the need of any import statements or boilerplate code, will generate beautiful 60 FPS animations as a series of consecutive images. These images are located inside a sub-folder within the iOS Simulator's Documents folder that you can then drag-and-drop into your Apple Watch app for immediate use.
+That's right, one function in one file - KFWatchKitAnimations.swift - without the need of any import statements or boilerplate code, will generate beautiful 60 FPS animations as a series of consecutive images. These images are located inside a sub-folder within the iOS Simulator's Documents folder that you can then drag-and-drop into your  Watch app for immediate use.
 
 It just works.
 
@@ -67,10 +67,10 @@ Make sure to check the console as you're recording your animations as the file p
 After copying the file path that was printed in the console, simply open Finder and press "Cmd + Shift + G" followed by pasting the copied file path.
 Lastly, drag-and-drop the animation folder into your WatchKit app and you're done!
 
-Note: A single recording that's been optimized for the 42mm Apple Watch will scale really well on the 38mm size, so don't worry about doubling up on the recording.
+Note: A single recording that's been optimized for the 42mm  Watch will scale really well on the 38mm size, so don't worry about doubling up on the recording.
 
 ## Sample App
-Please download the sample app "WatchKitAnimations" in this repository for a clear idea of how to create complex animations for Apple Watch.
+Please download the sample app "WatchKitAnimations" in this repository for a clear idea of how to create complex animations for  Watch.
 
 ## Contact Information
 Kiavash Faisali
