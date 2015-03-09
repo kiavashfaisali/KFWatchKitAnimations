@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name        = 'KFWatchKitAnimations'
   s.version     = '1.0'
-  s.summary     = 'KFWatchKitAnimations enables beautiful 60 FPS animations on Apple Watch by recording arbitrary animations from an iOS app as an ordered collection of images.'
+  s.summary     = 'KFWatchKitAnimations creates beautiful 60 FPS animations on  Watch by recording animations from the iOS Simulator.'
   s.homepage    = 'https://github.com/kiavashfaisali/KFWatchKitAnimations'
   s.license     = { :type => 'MIT',
 		    :file => 'LICENSE' }
@@ -12,5 +12,5 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '7.0'
   s.source   = { :git => 'https://github.com/kiavashfaisali/KFWatchKitAnimations.git',
 		 :tag => s.version.to_s }
-  s.source_files = 'KFWatchKitAnimations'
+  s.source_files = 'KFWatchKitAnimations/*.swift'
 end
