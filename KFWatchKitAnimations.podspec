@@ -7,9 +7,9 @@ Pod::Spec.new do |s|
 		    :file => 'LICENSE' }
   s.authors     = { 'kiavashfaisali' => 'kiavashfaisali@outlook.com' }
 
-  s.platform = :ios, '7.0'
+  s.platform = :ios, '8.0'
   s.requires_arc = true
-  s.ios.deployment_target = '7.0'
+  s.ios.deployment_target = '8.0'
   s.source   = { :git => 'https://github.com/kiavashfaisali/KFWatchKitAnimations.git',
 		 :tag => s.version.to_s }
   s.source_files = 'KFWatchKitAnimations/*.swift'
