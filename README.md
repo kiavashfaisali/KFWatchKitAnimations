@@ -20,7 +20,8 @@ It just works.
 
 ## KFWatchKitAnimations Requirements
 * Xcode 6.1 or higher
-* iOS 7.0 or higher
+* iOS 7.0 (if drag-and-drop source into project)
+* iOS 8.0 (if using CocoaPods 0.36+, since it uses Frameworks and Frameworks require iOS 8.0 to be imported).
 
 ## WatchKitAnimations Sample App Requirements
 * Xcode 6.2 or higher
@@ -29,11 +30,19 @@ It just works.
 ### CocoaPods
 To ensure you stay up-to-date with the latest version of KFWatchKitAnimations, it is recommended that you use CocoaPods.
 
+Since CocoaPods 0.36 brings Swift support, but is currently in BETA, you will need to run the following command first:
+``` bash
+sudo gem install cocoapods --pre
+```
+
 Add the following to your Podfile
 ``` bash
-platform :ios, '7.0'
+platform :ios, '8.0'
 pod 'KFWatchKitAnimations'
+use_frameworks!
 ```
+
+You can technically have everything working fine under iOS 7.0 with CocoaPods' "use_frameworks!" approach, but you'll get a warning like "Embedded dylibs/frameworks only run on iOS 8 or later", which you should be ready to take care of should any problems arise.
 
 ## Example Usage
 ``` swift
