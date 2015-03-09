@@ -78,7 +78,7 @@ UIView.animateWithDuration(0.5, animations: {
 }
 ```
 
-While the latter solution enables you to capture snapshots of animations you may have in existing apps with very little modification to the original code, it's important to know that the former less initial internal setup overhead with greatly increased legibility, thus it is greatly preferred.
+While the latter solution enables you to capture snapshots of animations you may have in existing apps with very little modification to the original code, it's important to know that the former requires less initial internal setup overhead with greatly increased legibility, thus it is greatly preferred.
 
 Make sure to check the console as you're recording your animations as the file path to the folder containing your recorded animations will be printed there.
 After copying the file path that was printed in the console, simply open Finder and press "Cmd + Shift + G" followed by pasting the copied file path.
