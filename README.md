@@ -45,6 +45,11 @@ pod 'KFWatchKitAnimations'
 use_frameworks!
 ```
 
+Since CocoaPods 0.36 will generate a KFWatchAnimations Framework, you will need to import it everywhere you wish to use it:
+``` swift
+import KFWatchKitAnimations
+```
+
 You can technically have everything working fine under iOS 7.0 with CocoaPods' "use_frameworks!" approach, but you'll get a warning like "Embedded dylibs/frameworks only run on iOS 8 or later", which you should be ready to take care of should any problems arise.
 
 ## Example Usage
