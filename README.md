@@ -2,6 +2,9 @@
 
 This project aims to provide an extremely easy-to-use tool for  Watch developers with which they can create gorgeous, smooth 60 FPS animations in a way that is highly optimized for WatchKit by recording arbitrary animations from an iPhone/iPad Simulator.
 
+Click the image below to be taken to a short introduction video.
+[![KFWatchKitAnimations](http://img.youtube.com/vi/tex2zZXR0M8/0.jpg)](https://www.youtube.com/watch?v=tex2zZXR0M8)
+
 ## The Problem
 Currently, a developer seeking to create animations for  Watch will require the aid of a talented designer that can break down an animation into individual snapshot images of the animation in progress, which when stitched together form the illusion of a continuous, high frame-rate animation.
 
@@ -42,6 +45,11 @@ pod 'KFWatchKitAnimations'
 use_frameworks!
 ```
 
+Since CocoaPods 0.36 will generate a KFWatchAnimations Framework, you will need to import it everywhere you wish to use it:
+``` swift
+import KFWatchKitAnimations
+```
+
 You can technically have everything working fine under iOS 7.0 with CocoaPods' "use_frameworks!" approach, but you'll get a warning like "Embedded dylibs/frameworks only run on iOS 8 or later", which you should be ready to take care of should any problems arise.
 
 ## Example Usage
@@ -70,7 +78,7 @@ UIView.animateWithDuration(0.5, animations: {
 }
 ```
 
-While the latter solution enables you to capture snapshots of animations you may have in existing apps with very little modification to the original code, it's important to know that the former less initial internal setup overhead with greatly increased legibility, thus it is greatly preferred.
+While the latter solution enables you to capture snapshots of animations you may have in existing apps with very little modification to the original code, it's important to know that the former requires less initial internal setup overhead with greatly increased legibility, thus it is greatly preferred.
 
 Make sure to check the console as you're recording your animations as the file path to the folder containing your recorded animations will be printed there.
 After copying the file path that was printed in the console, simply open Finder and press "Cmd + Shift + G" followed by pasting the copied file path.
