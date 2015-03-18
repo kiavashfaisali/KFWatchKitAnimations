@@ -22,6 +22,7 @@
 import UIKit
 
 class AnimationsViewController: UIViewController {
+    // MARK: - Properties
     @IBOutlet weak var watchView: UIView!
     @IBOutlet weak var countdownLabel: UILabel!
     @IBOutlet weak var heroImageView: UIImageView!
@@ -37,15 +38,18 @@ class AnimationsViewController: UIViewController {
     let attributedString = NSMutableAttributedString(string: "KFWatchKitAnimations")
     var currentCharacterLocation = 0
     
+    // MARK: - Memory Warning
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Status Bar Methods
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
     
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,7 +62,7 @@ class AnimationsViewController: UIViewController {
         self.heroImageView.layer.cornerRadius = self.heroImageView.bounds.size.width / 2
         
         self.circle = CAShapeLayer()
-        self.circle.path = UIBezierPath(arcCenter: CGPointMake(self.watchView.bounds.width/2, self.watchView.bounds.height/2), radius: 50, startAngle: CGFloat(-M_PI_2), endAngle: CGFloat(2.0 * M_PI), clockwise: true).CGPath
+        self.circle.path = UIBezierPath(arcCenter: CGPointMake(self.watchView.bounds.width/2, self.watchView.bounds.height/2), radius: 50, startAngle: CGFloat(-M_PI_2), endAngle: CGFloat(3.0 * M_PI_2), clockwise: true).CGPath
         self.circle.fillColor = nil
         self.circle.strokeColor = UIColor(red: 180/255.0, green: 1.0, blue: 167/255.0, alpha: 1.0).CGColor
         self.circle.lineWidth = 2
@@ -68,42 +72,6 @@ class AnimationsViewController: UIViewController {
         self.animation.fromValue = 0
         self.animation.toValue = 1
         self.animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-    }
-    
-    func countdownAnimationWithSequenceDuration(duration: NSTimeInterval, completion: (() -> Void)?) {
-        UIView.animateWithDuration(duration, animations: {
-            if self.shouldFadeOut {
-                self.countdownLabel.alpha = 0.1
-            }
-            else {
-                self.countdownLabel.alpha = 1.0
-                self.countdownLabel.text = "\(self.counter)"
-            }
-        }) { finished in
-            if finished {
-                self.shouldFadeOut = !self.shouldFadeOut
-                if self.shouldFadeOut == false {
-                    --self.counter
-                }
-                
-                if self.counter > 0 {
-                    self.countdownAnimationWithSequenceDuration(duration, completion: completion)
-                }
-                else {
-                    completion?()
-                }
-            }
-        }
-    }
-    
-    func refreshText() {
-        let previousCharacterLocation = (self.currentCharacterLocation - 1 + self.attributedString.length) % self.attributedString.length
-        
-        self.attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.yellowColor(), range: NSMakeRange(self.currentCharacterLocation, 1))
-        self.attributedString.removeAttribute(NSForegroundColorAttributeName, range: NSMakeRange(previousCharacterLocation, 1))
-        self.watchKitAnimationsLabel.attributedText = self.attributedString
-        
-        self.currentCharacterLocation = (self.currentCharacterLocation + 1) % self.attributedString.length
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -139,7 +107,7 @@ class AnimationsViewController: UIViewController {
                         self.watchKitAnimationsLabel.alpha = 1.0
                     })
                 }) { finished in
-                    // Kick off the text refresh beforehand and simply record the view without any passing in any animations to the closure.
+                    // Kick off the text refresh beforehand and simply record the view without passing in any animations to the closure.
                     NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "refreshText", userInfo: nil, repeats: true)
                     
                     // ANIMATION CHAIN PHASE 4: INFINITE YELLOW CHARACTER JUMP
@@ -147,5 +115,42 @@ class AnimationsViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    // MARK: - Miscellaneous Methods
+    func countdownAnimationWithSequenceDuration(duration: NSTimeInterval, completion: (() -> Void)?) {
+        UIView.animateWithDuration(duration, animations: {
+            if self.shouldFadeOut {
+                self.countdownLabel.alpha = 0.1
+            }
+            else {
+                self.countdownLabel.alpha = 1.0
+                self.countdownLabel.text = "\(self.counter)"
+            }
+        }) { finished in
+            if finished {
+                self.shouldFadeOut = !self.shouldFadeOut
+                if self.shouldFadeOut == false {
+                    --self.counter
+                }
+                
+                if self.counter > 0 {
+                    self.countdownAnimationWithSequenceDuration(duration, completion: completion)
+                }
+                else {
+                    completion?()
+                }
+            }
+        }
+    }
+    
+    func refreshText() {
+        let previousCharacterLocation = (self.currentCharacterLocation - 1 + self.attributedString.length) % self.attributedString.length
+        
+        self.attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.yellowColor(), range: NSMakeRange(self.currentCharacterLocation, 1))
+        self.attributedString.removeAttribute(NSForegroundColorAttributeName, range: NSMakeRange(previousCharacterLocation, 1))
+        self.watchKitAnimationsLabel.attributedText = self.attributedString
+        
+        self.currentCharacterLocation = (self.currentCharacterLocation + 1) % self.attributedString.length
     }
 }
