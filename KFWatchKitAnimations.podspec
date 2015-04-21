@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = 'KFWatchKitAnimations'
-  s.version     = '1.0'
+  s.version     = '1.1'
   s.summary     = 'KFWatchKitAnimations creates beautiful 60 FPS animations on  Watch by recording animations from the iOS Simulator.'
   s.homepage    = 'https://github.com/kiavashfaisali/KFWatchKitAnimations'
   s.license     = { :type => 'MIT',
