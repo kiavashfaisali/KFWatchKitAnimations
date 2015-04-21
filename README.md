@@ -5,6 +5,8 @@ This project aims to provide an extremely easy-to-use tool for  Watch develop
 Click the image below to be taken to a short introduction video.
 [![KFWatchKitAnimations](http://img.youtube.com/vi/tex2zZXR0M8/0.jpg)](https://www.youtube.com/watch?v=tex2zZXR0M8)
 
+Please also check out [KFSwiftImageLoader](https://github.com/kiavashfaisali/KFSwiftImageLoader) for an extremely high-performance, lightweight, and energy-efficient pure Swift async web image loader with memory and disk caching for iOS and  Watch.
+
 ## The Problem
 Currently, a developer seeking to create animations for  Watch will require the aid of a talented designer that can break down an animation into individual snapshot images of the animation in progress, which when stitched together form the illusion of a continuous, high frame-rate animation.
 
@@ -13,7 +15,7 @@ This is in stark contrast to what iOS developers are accustomed to since framewo
 ## The Solution
 ``` Swift
 extension UIView {
-    func snapshotsWithDuration(duration: CFTimeInterval, imageName: String, animations: (() -> Void)?, completion: ((finished: Bool) -> Void)?
+    func snapshotsWithDuration(duration: CFTimeInterval, imageName: String, animations: (() -> Void)? = nil, completion: ((finished: Bool) -> Void)? = nil)
 }
 ```
 
@@ -22,13 +24,13 @@ That's right, one function in one file - KFWatchKitAnimations.swift - without th
 It just works.
 
 ## KFWatchKitAnimations Requirements
-* Xcode 6.1 or higher
-* iOS 7.0 (if drag-and-drop source file(s) into your project)
-* iOS 8.0 (if using CocoaPods 0.36+, which generates a Framework).
+* Xcode 6.3+
+* iOS 7.0+ (if drag-and-drop source file(s) into your project)
+* iOS 8.0+ (if using CocoaPods 0.36+, which generates a Framework).
 
 ## WatchKitAnimations Sample App Requirements
-* Xcode 6.2 or higher
-* iOS 8.2 or higher
+* Xcode 6.3+
+* iOS 8.2+
 
 ### CocoaPods
 To ensure you stay up-to-date with the latest version of KFWatchKitAnimations, it is recommended that you use CocoaPods.
@@ -60,12 +62,12 @@ self.someView.snapshotsWithDuration(1.0, imageName: "fadeOutThenInView", animati
             self.someView.alpha = 1.0
         }
     }
-}, completion: nil)
+})
 ```
 
-Since the "animations" block in the above function is optional, you can instead implement the above example like this:
+Since the "animations" block in the above function is optional and defaults to nil when ommitted from the method, you can instead implement the above example like this:
 ``` swift
-self.someView.snapshotsWithDuration(1.0, imageName: "fadeOutThenInView", animations: nil, completion: nil)
+self.someView.snapshotsWithDuration(1.0, imageName: "fadeOutThenInView")
 
 UIView.animateWithDuration(0.5, animations: {
     self.someView.alpha = 0.0
