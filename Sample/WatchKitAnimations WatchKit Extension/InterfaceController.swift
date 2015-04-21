@@ -7,26 +7,17 @@
 //
 
 import WatchKit
-import Foundation
 
-class InterfaceController: WKInterfaceController {
+final class InterfaceController: WKInterfaceController {
+    // MARK: - Properties
     @IBOutlet weak var animationImage: WKInterfaceImage!
 
+    // MARK: - Setup and Teardown
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
     }
     
-    func dispatchAnimationsAfterSeconds(seconds: Double, animations: () -> Void) {
-        if seconds <= 0.0 {
-            return
-        }
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(seconds * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-            self.animationImage.stopAnimating()
-            animations()
-        }
-    }
-
+    // MARK: - View Lifecycle
     override func willActivate() {
         super.willActivate()
         
@@ -52,9 +43,20 @@ class InterfaceController: WKInterfaceController {
             }
         }
     }
-
+    
     override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+    }
+    
+    // MARK: - Miscellaneous Methods
+    func dispatchAnimationsAfterSeconds(seconds: Double, animations: () -> Void) {
+        if seconds <= 0.0 {
+            return
+        }
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(seconds * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+            self.animationImage.stopAnimating()
+            animations()
+        }
     }
 }

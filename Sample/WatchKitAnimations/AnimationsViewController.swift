@@ -21,7 +21,7 @@
 
 import UIKit
 
-class AnimationsViewController: UIViewController {
+final class AnimationsViewController: UIViewController {
     // MARK: - Properties
     @IBOutlet weak var watchView: UIView!
     @IBOutlet weak var countdownLabel: UILabel!
@@ -111,14 +111,14 @@ class AnimationsViewController: UIViewController {
                     NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: "refreshText", userInfo: nil, repeats: true)
                     
                     // ANIMATION CHAIN PHASE 4: INFINITE YELLOW CHARACTER JUMP
-                    self.watchView.snapshotsWithDuration(3.0, imageName: "yellowCharacterJump", animations: nil, completion: nil)
+                    self.watchView.snapshotsWithDuration(3.0, imageName: "yellowCharacterJump")
                 }
             }
         }
     }
     
     // MARK: - Miscellaneous Methods
-    func countdownAnimationWithSequenceDuration(duration: NSTimeInterval, completion: (() -> Void)?) {
+    func countdownAnimationWithSequenceDuration(duration: NSTimeInterval, completion: (() -> Void)? = nil) {
         UIView.animateWithDuration(duration, animations: {
             if self.shouldFadeOut {
                 self.countdownLabel.alpha = 0.1
