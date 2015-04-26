@@ -28,55 +28,55 @@ private var snapshotNumberAssociationKey: UInt8 = 0
 private var completionHolderAssociationKey: UInt8 = 0
 
 extension UIView {
-    private class CompletionHolder {
-        var completion: ((finished: Bool) -> Void)?
+    final private class CompletionHolder {
+        let completion: ((finished: Bool) -> Void)?
         
         init(completion: ((Bool) -> Void)?) {
             self.completion = completion
         }
     }
     
-    private var duration: CFTimeInterval! {
+    final private var duration: CFTimeInterval! {
         get {
             return objc_getAssociatedObject(self, &durationAssociationKey) as? CFTimeInterval
         }
-        set(newValue) {
+        set {
             objc_setAssociatedObject(self, &durationAssociationKey, newValue, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN))
         }
     }
     
-    private var imageDocumentsPath: String! {
+    final private var imageDocumentsPath: String! {
         get {
             return objc_getAssociatedObject(self, &imageDocumentsPathAssociationKey) as? String
         }
-        set(newValue) {
+        set {
             objc_setAssociatedObject(self, &imageDocumentsPathAssociationKey, newValue, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN))
         }
     }
     
-    private var imageName: String! {
+    final private var imageName: String! {
         get {
             return objc_getAssociatedObject(self, &imageNameAssociationKey) as? String
         }
-        set(newValue) {
+        set {
             objc_setAssociatedObject(self, &imageNameAssociationKey, newValue, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN))
         }
     }
     
-    private var snapshotNumber: Int! {
+    final private var snapshotNumber: Int! {
         get {
             return objc_getAssociatedObject(self, &snapshotNumberAssociationKey) as? Int
         }
-        set(newValue) {
+        set {
             objc_setAssociatedObject(self, &snapshotNumberAssociationKey, newValue, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN))
         }
     }
     
-    private var completionHolder: CompletionHolder! {
+    final private var completionHolder: CompletionHolder! {
         get {
             return objc_getAssociatedObject(self, &completionHolderAssociationKey) as? CompletionHolder
         }
-        set(newValue) {
+        set {
             objc_setAssociatedObject(self, &completionHolderAssociationKey, newValue, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN))
         }
     }
@@ -86,10 +86,10 @@ extension UIView {
     
     :param: duration The duration (in seconds) of the animation.
     :param: imageName The name of the image collection (as well as the sub-folder in Documents). Do not add a "-" at the end as that will already be appended. For example, if imageName is "Example", then the collection will be Example-0@2x.png, Example-1@2x.png, etc.
-    :param: animations An optional closure containing the animations to sync with. Alternatively, you can call this function with nil animations and it will record all activity on the view which performed the call for the specified duration.
-    :param: completion An optional closure which acts as an entry point for chaining recordings in order to split up a long, complex animation into several sub-animations. A Bool parameter contains the state of whether or not the recording was successful.
+    :param: animations An optional closure containing the animations to sync with. Alternatively, you can call this function with nil animations and it will record all activity on the view which performed the call for the specified duration. The default value is nil.
+    :param: completion An optional closure which acts as an entry point for chaining recordings in order to split up a long, complex animation into several sub-animations. A Bool parameter contains the state of whether or not the recording was successful. The default value is nil.
     */
-    public func snapshotsWithDuration(duration: CFTimeInterval, imageName: String, animations: (() -> Void)?, completion: ((finished: Bool) -> Void)?) {
+    final public func snapshotsWithDuration(duration: CFTimeInterval, imageName: String, animations: (() -> Void)? = nil, completion: ((finished: Bool) -> Void)? = nil) {
         if duration <= 0 {
             return
         }
@@ -105,7 +105,7 @@ extension UIView {
                 self.imageDocumentsPath = imageDirectory
             }
             else {
-                println("Failed to create directory with name \(imageName): \(error!.localizedDescription)")
+                println("\n[KFWatchKitAnimations] Failed to create directory with name \(imageName): \(error!.localizedDescription)\n")
                 completion?(finished: false)
                 return
             }
@@ -120,16 +120,16 @@ extension UIView {
         displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
     }
     
-    internal func takeSnapshot(displayLink: CADisplayLink) {
+    final internal func takeSnapshot(displayLink: CADisplayLink) {
         if displayLink.timestamp > self.duration {
             displayLink.invalidate()
-            println("Finished writing '\(self.imageName)' to the filesystem.")
-            println(self.imageDocumentsPath)
+            println("\n[KFWatchKitAnimations] Finished writing '\(self.imageName)' to the filesystem.\n")
+            println("\n[KFWatchKitAnimations] \(self.imageDocumentsPath)\n")
             self.completionHolder.completion?(finished: true)
         }
         else if self.snapshotNumber > 1024 {
             displayLink.invalidate()
-            println("This animation has exceeded the maximum number of images WatchKit will allow. Please record the sub-animations instead as a work-around.")
+            println("\n[KFWatchKitAnimations] This animation has exceeded the maximum number of images WatchKit will allow. As a work-around, please record the sub-animations individually.\n")
             self.completionHolder.completion?(finished: false)
         }
         else {
@@ -139,7 +139,7 @@ extension UIView {
         }
     }
     
-    private func snapshot() -> UIImage {
+    final private func snapshot() -> UIImage {
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, UIScreen.mainScreen().scale)
         self.drawViewHierarchyInRect(self.bounds, afterScreenUpdates: false)
         let snapshotImage = UIGraphicsGetImageFromCurrentImageContext()
