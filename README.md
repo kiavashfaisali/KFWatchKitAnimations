@@ -24,12 +24,11 @@ That's right, one function in one file - KFWatchKitAnimations.swift - without th
 It just works.
 
 ## KFWatchKitAnimations Requirements
-* Xcode 6.3+
-* iOS 7.0+ (if drag-and-drop source file(s) into your project)
-* iOS 8.0+ (if using CocoaPods 0.36+, which generates a Framework).
+* Xcode 7.0+
+* iOS 8.0+
 
 ## WatchKitAnimations Sample App Requirements
-* Xcode 6.3+
+* Xcode 7.0+
 * iOS 8.2+
 
 ### CocoaPods
@@ -44,8 +43,8 @@ Add the following to your Podfile
 ``` bash
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
-pod 'KFWatchKitAnimations'
 use_frameworks!
+pod 'KFWatchKitAnimations', '~> 1.3'
 ```
 
 Since CocoaPods 0.36+ will generate a KFWatchAnimations Framework, you will need to import it everywhere you wish to use it:
