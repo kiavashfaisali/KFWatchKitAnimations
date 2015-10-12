@@ -47,7 +47,7 @@ use_frameworks!
 pod 'KFWatchKitAnimations', '~> 1.3'
 ```
 
-Since CocoaPods 0.36+ will generate a KFWatchAnimations Framework, you will need to import it everywhere you wish to use it:
+You will need to import KFWatchKitAnimations everywhere you wish to use it:
 ``` swift
 import KFWatchKitAnimations
 ```
