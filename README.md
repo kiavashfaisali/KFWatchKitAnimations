@@ -7,6 +7,10 @@ Click the image below to be taken to a short introduction video.
 
 Please also check out [KFSwiftImageLoader](https://github.com/kiavashfaisali/KFSwiftImageLoader) for an extremely high-performance, lightweight, and energy-efficient pure Swift async web image loader with memory and disk caching for iOS and  Watch.
 
+## Note
+
+Swift 3.0+, Xcode 8.0+, CocoaPods 1.0+ updates coming next week!
+
 ## The Problem
 Currently, a developer seeking to create animations for  Watch will require the aid of a talented designer that can break down an animation into individual snapshot images of the animation in progress, which when stitched together form the illusion of a continuous, high frame-rate animation.
 
