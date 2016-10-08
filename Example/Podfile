@@ -1,0 +1,5 @@
+use_frameworks!
+
+target 'KFWatchKitAnimations_Example' do
+  pod 'KFWatchKitAnimations', :path => '../'
+end
