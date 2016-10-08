@@ -1,0 +1,6 @@
+framework module KFWatchKitAnimations {
+  umbrella header "KFWatchKitAnimations-umbrella.h"
+
+  export *
+  module * { export * }
+}
