@@ -12,15 +12,15 @@ private var snapshotNumberAssociationKey: UInt8 = 0
 private var completionHolderAssociationKey: UInt8 = 0
 
 extension UIView {
-    final private class CompletionHolder {
-        let completion: ((finished: Bool) -> Void)?
+    final fileprivate class CompletionHolder {
+        let completion: ((_ finished: Bool) -> Void)?
         
         init(completion: ((Bool) -> Void)?) {
             self.completion = completion
         }
     }
     
-    final private var duration: CFTimeInterval! {
+    final fileprivate var duration: CFTimeInterval! {
         get {
             return objc_getAssociatedObject(self, &durationAssociationKey) as? CFTimeInterval
         }
@@ -29,16 +29,16 @@ extension UIView {
         }
     }
     
-    final private var imageDocumentsURL: NSURL! {
+    final fileprivate var imageDocumentsURL: URL! {
         get {
-            return objc_getAssociatedObject(self, &imageDocumentsURLAssociationKey) as? NSURL
+            return objc_getAssociatedObject(self, &imageDocumentsURLAssociationKey) as? URL
         }
         set {
             objc_setAssociatedObject(self, &imageDocumentsURLAssociationKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
     
-    final private var imageName: String! {
+    final fileprivate var imageName: String! {
         get {
             return objc_getAssociatedObject(self, &imageNameAssociationKey) as? String
         }
@@ -47,7 +47,7 @@ extension UIView {
         }
     }
     
-    final private var snapshotNumber: Int! {
+    final fileprivate var snapshotNumber: Int! {
         get {
             return objc_getAssociatedObject(self, &snapshotNumberAssociationKey) as? Int
         }
@@ -56,7 +56,7 @@ extension UIView {
         }
     }
     
-    final private var completionHolder: CompletionHolder! {
+    final fileprivate var completionHolder: CompletionHolder! {
         get {
             return objc_getAssociatedObject(self, &completionHolderAssociationKey) as? CompletionHolder
         }
@@ -66,67 +66,93 @@ extension UIView {
     }
     
     /**
-    Records the view and it's entire hierarchy at 60 FPS and stores the resulting image collection in a sub-folder within the the app's Documents folder. The file path will be printed in the console at runtime.
+        Records the view and it's entire hierarchy at 60 FPS and stores the resulting image collection in a sub-folder within the the app's Documents folder. The file path will be printed in the console at runtime.
     
-    - parameter duration: The duration (in seconds) of the animation.
-    - parameter imageName: The name of the image collection (as well as the sub-folder in Documents). Do not add a "-" at the end as that will already be appended. For example, if imageName is "Example", then the collection will be Example-0@2x.png, Example-1@2x.png, etc.
-    - parameter animations: An optional closure containing the animations to sync with. Alternatively, you can call this function with nil animations and it will record all activity on the view which performed the call for the specified duration. The default value is nil.
-    - parameter completion: An optional closure which acts as an entry point for chaining recordings in order to split up a long, complex animation into several sub-animations. A Bool parameter contains the state of whether or not the recording was successful. The default value is nil.
+        - parameter duration: The duration (in seconds) of the animation.
+        - parameter imageName: The name of the image collection (as well as the sub-folder in Documents). Do not add a "-" at the end as that will already be appended. For example, if imageName is "Example", then the collection will be Example-0@2x.png, Example-1@2x.png, etc.
+        - parameter animations: An optional closure containing the animations to sync with. Alternatively, you can call this function with nil animations and it will record all activity on the view which performed the call for the specified duration. The default value is nil.
+        - parameter completion: An optional closure which acts as an entry point for chaining recordings in order to split up a long, complex animation into several sub-animations. A Bool parameter contains the state of whether or not the recording was successful. The default value is nil.
     */
-    final public func snapshotsWithDuration(duration: CFTimeInterval, imageName: String, animations: (() -> Void)? = nil, completion: ((finished: Bool) -> Void)? = nil) {
-        if duration <= 0 {
+    final public func snapshots(duration: CFTimeInterval, imageName: String, animations: (() -> Void)? = nil, completion: ((_ success: Bool) -> Void)? = nil) {
+        let fileManager = FileManager.default
+        
+        guard duration > 0,
+            let documentDirectoryURL = try? fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) else
+        {
+            print("\n[KFWatchKitAnimations] Failed to begin snapshots. Please ensure that `duration` is a positive value.")
+            completion?(false)
+            
             return
         }
         
-        let fileManager = NSFileManager.defaultManager()
-        let documentsDirectoryURLs = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
-        let imageDirectoryURL = documentsDirectoryURLs.URLByAppendingPathComponent(imageName)
+        let imageDirectoryURL = documentDirectoryURL.appendingPathComponent(imageName)
         
         // Attempt to remove any existing image directory so that a fresh new recording is always saved.
-        do { try fileManager.removeItemAtURL(imageDirectoryURL) } catch {}
+        try? fileManager.removeItem(at: imageDirectoryURL)
         
         do {
-            try fileManager.createDirectoryAtURL(imageDirectoryURL, withIntermediateDirectories: true, attributes: nil)
+            try fileManager.createDirectory(at: imageDirectoryURL, withIntermediateDirectories: true, attributes: nil)
             
             self.imageDocumentsURL = imageDirectoryURL
             self.imageName = imageName
             self.snapshotNumber = 0
             self.duration = CACurrentMediaTime() + duration
             self.completionHolder = CompletionHolder(completion: completion)
-            let displayLink = CADisplayLink(target: self, selector: "takeSnapshot:")
+            
+            let displayLink = CADisplayLink(target: self, selector: #selector(UIView.takeSnapshot(displayLink:)))
             animations?()
-            displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
+            displayLink.add(to: RunLoop.main, forMode: RunLoopMode.commonModes)
         }
         catch {
             print("\n[KFWatchKitAnimations] Failed to create directory '\(imageName)': \(error)\n")
-            completion?(finished: false)
+            completion?(false)
         }
     }
     
     final internal func takeSnapshot(displayLink: CADisplayLink) {
+        var success = true
+        
+        defer { self.completionHolder.completion?(success) }
+        
         if displayLink.timestamp > self.duration {
             displayLink.invalidate()
-            print("\n[KFWatchKitAnimations] Finished writing '\(self.imageName)' to the filesystem.\n")
-            print("\n[KFWatchKitAnimations] \(self.imageDocumentsURL.path!)\n")
-            self.completionHolder.completion?(finished: true)
+            
+            print("\n[KFWatchKitAnimations] Finished writing '\(self.imageName!)' to the filesystem.\n")
+            print("\n[KFWatchKitAnimations] \(self.imageDocumentsURL.path)\n")
+            
+            return
         }
         else if self.snapshotNumber > 1024 {
             displayLink.invalidate()
+            success = false
+            
             print("\n[KFWatchKitAnimations] This animation has exceeded the maximum number of images WatchKit will allow. As a work-around, please record the sub-animations individually.\n")
-            self.completionHolder.completion?(finished: false)
+            
+            return
         }
-        else if let imagePath = self.imageDocumentsURL.URLByAppendingPathComponent("\(self.imageName)-\(self.snapshotNumber)@2x.png").path, snapshotImage = UIImagePNGRepresentation(self.snapshot()) {
-            snapshotImage.writeToFile(imagePath, atomically: true)
-            ++self.snapshotNumber!
+        else if let snapshotImageData = UIImagePNGRepresentation(self.snapshot()) {
+            let imagePath = self.imageDocumentsURL.appendingPathComponent("\(self.imageName)-\(self.snapshotNumber)@2x.png").path
+            
+            do {
+                let url = URL(fileURLWithPath: imagePath)
+                try snapshotImageData.write(to: url, options: .atomic)
+            }
+            catch {
+                
+            }
+            
+            self.snapshotNumber! += 1
         }
     }
     
-    final private func snapshot() -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, UIScreen.mainScreen().scale)
-        self.drawViewHierarchyInRect(self.bounds, afterScreenUpdates: false)
+    final fileprivate func snapshot() -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, UIScreen.main.scale)
+        
+        self.drawHierarchy(in: self.bounds, afterScreenUpdates: false)
         let snapshotImage = UIGraphicsGetImageFromCurrentImageContext()
+        
         UIGraphicsEndImageContext()
         
-        return snapshotImage
+        return snapshotImage!
     }
 }

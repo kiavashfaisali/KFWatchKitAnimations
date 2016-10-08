@@ -70,13 +70,11 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.66663002928294146" green="0.82904283341662843" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="cRo-hR-1nq" firstAttribute="leading" secondItem="DE2-Vt-aId" secondAttribute="leading" constant="2" id="AJu-fX-Dw5"/>
                                     <constraint firstItem="sAM-ai-O8h" firstAttribute="height" secondItem="crI-al-8NE" secondAttribute="height" id="Bwo-R4-Vh4"/>
                                     <constraint firstAttribute="centerX" secondItem="cRo-hR-1nq" secondAttribute="centerX" id="Hcw-Rf-0EA"/>
                                     <constraint firstAttribute="centerY" secondItem="cRo-hR-1nq" secondAttribute="centerY" constant="-80" id="Iq6-JX-TiV"/>
                                     <constraint firstAttribute="centerX" secondItem="crI-al-8NE" secondAttribute="centerX" id="Jz3-Id-Ixe"/>
                                     <constraint firstItem="sAM-ai-O8h" firstAttribute="width" secondItem="crI-al-8NE" secondAttribute="width" id="NzQ-mp-ApJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="cRo-hR-1nq" secondAttribute="trailing" constant="3" id="QOK-Tx-Wkh"/>
                                     <constraint firstAttribute="height" constant="195" id="UKf-TA-tDr"/>
                                     <constraint firstAttribute="width" constant="156" id="dR1-EQ-ogd"/>
                                     <constraint firstAttribute="centerY" secondItem="sAM-ai-O8h" secondAttribute="centerY" id="jbl-pE-vXz"/>
