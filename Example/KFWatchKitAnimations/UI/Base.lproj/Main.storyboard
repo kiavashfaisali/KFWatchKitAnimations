@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6750" systemVersion="14D87p" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6735"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Animations View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="AnimationsViewController" customModule="WatchKitAnimations" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="AnimationsViewController" customModule="KFWatchKitAnimations_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -17,31 +18,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DE2-Vt-aId" userLabel="Watch View">
-                                <rect key="frame" x="0.0" y="0.0" width="156" height="195"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="KiavashFaisali" translatesAutoresizingMaskIntoConstraints="NO" id="crI-al-8NE" userLabel="Kiavash Faisali Image">
-                                        <rect key="frame" x="28" y="48" width="100" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="SgQ-Zd-cJf"/>
                                             <constraint firstAttribute="width" constant="100" id="eNk-Lk-tUy"/>
                                         </constraints>
                                     </imageView>
                                     <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sAM-ai-O8h">
-                                        <rect key="frame" x="28" y="48" width="100" height="100"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="CGn-2S-7uC">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <frame key="frameInset"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QA5-yL-4Kl">
-                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Jrk-z6-H8c">
-                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                        <frame key="frameInset"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.10000000000000001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lAi-rg-5Dh">
-                                                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="40"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -67,23 +63,20 @@
                                         <blurEffect style="dark"/>
                                     </visualEffectView>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KFWatchKitAnimations" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRo-hR-1nq" userLabel="KFWatchKitAnimations Label">
-                                        <rect key="frame" x="3" y="168" width="151" height="19"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="19" id="4sq-Jt-U64"/>
-                                            <constraint firstAttribute="width" constant="151" id="zOQ-T1-vAK"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
-                                        <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.66663002928294146" green="0.82904283341662843" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.66663002928294146" green="0.82904283341662843" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="cRo-hR-1nq" firstAttribute="leading" secondItem="DE2-Vt-aId" secondAttribute="leading" constant="2" id="AJu-fX-Dw5"/>
                                     <constraint firstItem="sAM-ai-O8h" firstAttribute="height" secondItem="crI-al-8NE" secondAttribute="height" id="Bwo-R4-Vh4"/>
                                     <constraint firstAttribute="centerX" secondItem="cRo-hR-1nq" secondAttribute="centerX" id="Hcw-Rf-0EA"/>
                                     <constraint firstAttribute="centerY" secondItem="cRo-hR-1nq" secondAttribute="centerY" constant="-80" id="Iq6-JX-TiV"/>
                                     <constraint firstAttribute="centerX" secondItem="crI-al-8NE" secondAttribute="centerX" id="Jz3-Id-Ixe"/>
                                     <constraint firstItem="sAM-ai-O8h" firstAttribute="width" secondItem="crI-al-8NE" secondAttribute="width" id="NzQ-mp-ApJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="cRo-hR-1nq" secondAttribute="trailing" constant="3" id="QOK-Tx-Wkh"/>
                                     <constraint firstAttribute="height" constant="195" id="UKf-TA-tDr"/>
                                     <constraint firstAttribute="width" constant="156" id="dR1-EQ-ogd"/>
                                     <constraint firstAttribute="centerY" secondItem="sAM-ai-O8h" secondAttribute="centerY" id="jbl-pE-vXz"/>
@@ -92,7 +85,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="DE2-Vt-aId" secondAttribute="centerY" id="dqe-qj-UTS"/>
                             <constraint firstAttribute="centerX" secondItem="DE2-Vt-aId" secondAttribute="centerX" id="naJ-Yb-CYe"/>
@@ -113,7 +106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1718" y="667.5"/>
+            <point key="canvasLocation" x="1716.8" y="667.01649175412297"/>
         </scene>
     </scenes>
     <resources>

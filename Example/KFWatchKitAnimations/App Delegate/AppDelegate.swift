@@ -1,9 +1,6 @@
 //
-//  AppDelegate.swift
-//  WatchKitAnimations
-//
 //  Created by Kiavash Faisali on 2015-02-17.
-//  Copyright (c) 2015 Kiavash Faisali. All rights reserved.
+//  Copyright (c) 2016 Kiavash Faisali. All rights reserved.
 //
 
 import UIKit
