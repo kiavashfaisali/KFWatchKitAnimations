@@ -96,10 +96,13 @@
                         <outlet property="countdownLabel" destination="lAi-rg-5Dh" id="anK-57-YZK"/>
                         <outlet property="heroCenterYAlignmentConstraint" destination="rdX-vj-cOt" id="iKf-pz-YVW"/>
                         <outlet property="heroImageView" destination="crI-al-8NE" id="dh5-zi-Akj"/>
+                        <outlet property="heroWidthConstraint" destination="eNk-Lk-tUy" id="8rf-ni-bOM"/>
                         <outlet property="visualEffectView" destination="sAM-ai-O8h" id="DNW-Og-gfF"/>
                         <outlet property="watchKitAnimationsCenterYAlignmentConstraint" destination="Iq6-JX-TiV" id="0B6-TS-6R7"/>
                         <outlet property="watchKitAnimationsLabel" destination="cRo-hR-1nq" id="H2b-LF-7gN"/>
                         <outlet property="watchView" destination="DE2-Vt-aId" id="j11-kh-AAz"/>
+                        <outlet property="watchViewHeightConstraint" destination="UKf-TA-tDr" id="EFT-sH-oKJ"/>
+                        <outlet property="watchViewWidthConstraint" destination="dR1-EQ-ogd" id="hVm-pR-ieE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -108,6 +111,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="KiavashFaisali" width="400" height="400"/>
+        <image name="KiavashFaisali" width="100" height="100"/>
     </resources>
 </document>

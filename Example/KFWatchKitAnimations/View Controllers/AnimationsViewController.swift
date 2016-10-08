@@ -13,8 +13,11 @@ final class AnimationsViewController: UIViewController {
     @IBOutlet weak var heroImageView: UIImageView!
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var heroCenterYAlignmentConstraint: NSLayoutConstraint!
+    @IBOutlet weak var heroWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var watchKitAnimationsCenterYAlignmentConstraint: NSLayoutConstraint!
     @IBOutlet weak var watchKitAnimationsLabel: UILabel!
+    @IBOutlet weak var watchViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var watchViewHeightConstraint: NSLayoutConstraint!
     
     var circle: CAShapeLayer!
     var animation: CABasicAnimation!
@@ -43,11 +46,11 @@ final class AnimationsViewController: UIViewController {
         // If your background color is clearColor, you should set opaque to false for better performance during recording.
         self.watchView.isOpaque = false
         
-        self.visualEffectView.layer.cornerRadius = self.visualEffectView.bounds.size.width / 2
-        self.heroImageView.layer.cornerRadius = self.heroImageView.bounds.size.width / 2
+        self.visualEffectView.layer.cornerRadius = self.heroWidthConstraint.constant / 2
+        self.heroImageView.layer.cornerRadius = self.heroWidthConstraint.constant / 2
         
         self.circle = CAShapeLayer()
-        self.circle.path = UIBezierPath(arcCenter: CGPoint(x: self.watchView.bounds.width/2, y: self.watchView.bounds.height/2), radius: 50, startAngle: CGFloat(-M_PI_2), endAngle: CGFloat(3.0 * M_PI_2), clockwise: true).cgPath
+        self.circle.path = UIBezierPath(arcCenter: CGPoint(x: self.watchViewWidthConstraint.constant/2, y: self.watchViewHeightConstraint.constant/2), radius: 50, startAngle: CGFloat(-M_PI_2), endAngle: CGFloat(3.0 * M_PI_2), clockwise: true).cgPath
         self.circle.fillColor = nil
         self.circle.strokeColor = UIColor(red: 180/255.0, green: 1.0, blue: 167/255.0, alpha: 1.0).cgColor
         self.circle.lineWidth = 2
