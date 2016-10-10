@@ -1,6 +1,6 @@
 # KFWatchKitAnimations
 
-This project aims to provide an extremely easy-to-use tool for  Watch developers with which they can create gorgeous, smooth 60 FPS animations in a way that is highly optimized for WatchKit by recording arbitrary animations from an iPhone/iPad Simulator.
+KFWatchKitAnimations provides an extremely easy-to-use tool for  Watch developers with which they can create gorgeous, smooth 60 FPS animations in a way that is highly optimized for WatchKit by recording arbitrary animations from the iOS Simulator.
 
 Click the image below to be taken to a short introduction video.
 [![KFWatchKitAnimations](http://img.youtube.com/vi/tex2zZXR0M8/0.jpg)](https://www.youtube.com/watch?v=tex2zZXR0M8)
@@ -9,7 +9,7 @@ Please also check out [KFSwiftImageLoader](https://github.com/kiavashfaisali/KFS
 
 ## Note
 
-Swift 3.0+, Xcode 8.0+, CocoaPods 1.0+ updates coming next week!
+ Watch example app coming October 16th!
 
 ## The Problem
 Currently, a developer seeking to create animations for  Watch will require the aid of a talented designer that can break down an animation into individual snapshot images of the animation in progress, which when stitched together form the illusion of a continuous, high frame-rate animation.
@@ -19,26 +19,25 @@ This is in stark contrast to what iOS developers are accustomed to since framewo
 ## The Solution
 ``` Swift
 extension UIView {
-    func snapshotsWithDuration(duration: CFTimeInterval, imageName: String, animations: (() -> Void)? = nil, completion: ((finished: Bool) -> Void)? = nil)
+    func snapshots(duration: CFTimeInterval,
+                  imageName: String,
+                 animations: (() -> Void)? = nil,
+                 completion: ((_ success: Bool) -> Void)? = nil)
 }
 ```
 
-That's right, one function in one file - KFWatchKitAnimations.swift - without the need of any import statements or boilerplate code, will generate beautiful 60 FPS animations as a series of consecutive images. These images are located inside a sub-folder within the iOS Simulator's Documents folder that you can then drag-and-drop into your  Watch app for immediate use.
+That's right, a single function in KFWatchKitAnimations without the need for boilerplate code, will generate beautiful 60 FPS animations as a series of consecutive images. These images are located inside a sub-folder within the iOS Simulator's Documents folder that you can then drag-and-drop into your  Watch app for immediate use.
 
 It just works.
 
 ## KFWatchKitAnimations Requirements
-* Xcode 7.0+
-* iOS 8.0+
-
-## WatchKitAnimations Sample App Requirements
-* Xcode 7.0+
-* iOS 8.2+
+* Xcode 8.0+
+* iOS 9.0+
 
 ### CocoaPods
-To ensure you stay up-to-date with the latest version of KFWatchKitAnimations, it is recommended that you use CocoaPods.
+To ensure you stay up-to-date with the latest version of KFSwiftImageLoader, it is recommended that you use CocoaPods.
 
-Since CocoaPods 0.36+ brings Swift support, you will need to run the following command first:
+Optimized for CocoaPods 1.0+, so you will need to run the following command first:
 ``` bash
 sudo gem install cocoapods
 ```
@@ -46,9 +45,9 @@ sudo gem install cocoapods
 Add the following to your Podfile
 ``` bash
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+platform :ios, '9.0'
 use_frameworks!
-pod 'KFWatchKitAnimations', '~> 1.3'
+pod 'KFWatchKitAnimations', '~> 2.0'
 ```
 
 You will need to import KFWatchKitAnimations everywhere you wish to use it:
@@ -58,7 +57,7 @@ import KFWatchKitAnimations
 
 ## Example Usage
 ``` swift
-self.someView.snapshotsWithDuration(1.0, imageName: "fadeOutThenInView", animations: {
+self.someView.snapshots(duration: 1.0, imageName: "fadeOutThenInView", animations: {
     UIView.animateWithDuration(0.5, animations: {
         self.someView.alpha = 0.0
     }) { finished in
@@ -101,7 +100,7 @@ Kiavash Faisali
 ## License
 KFWatchKitAnimations is available under the MIT license.
 
-Copyright (c) 2015 Kiavash Faisali
+Copyright (c) 2016 Kiavash Faisali
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
