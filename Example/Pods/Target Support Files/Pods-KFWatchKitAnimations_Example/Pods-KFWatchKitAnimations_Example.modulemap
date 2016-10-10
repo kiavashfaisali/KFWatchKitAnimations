@@ -1,0 +1,6 @@
+framework module Pods_KFWatchKitAnimations_Example {
+  umbrella header "Pods-KFWatchKitAnimations_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
