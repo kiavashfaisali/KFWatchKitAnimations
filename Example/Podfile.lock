@@ -1,5 +1,5 @@
 PODS:
-  - KFWatchKitAnimations (2.0.0)
+  - KFWatchKitAnimations (3.0.0)
 
 DEPENDENCIES:
   - KFWatchKitAnimations (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  KFWatchKitAnimations: 0568d7146abd4a749de18af70372800b8182674b
+  KFWatchKitAnimations: f5687d3914baf41ceaca1ebce751289e84f6bc4a
 
-PODFILE CHECKSUM: 6f8845b4dbada6dda858154a50a0af14af34383f
+PODFILE CHECKSUM: 52cfbad91d3c4dae5d456ae636e9b6edb4e763e8
 
-COCOAPODS: 1.1.0.rc.2
+COCOAPODS: 1.4.0.beta.1

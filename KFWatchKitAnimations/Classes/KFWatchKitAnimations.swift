@@ -106,7 +106,7 @@ extension UIView {
         }
     }
     
-    final internal func takeSnapshot(displayLink: CADisplayLink) {
+    @objc final internal func takeSnapshot(displayLink: CADisplayLink) {
         if displayLink.timestamp > self.duration {
             displayLink.invalidate()
             

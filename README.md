@@ -45,9 +45,9 @@ sudo gem install cocoapods
 Add the following to your Podfile
 ``` bash
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '9.0'
+platform :ios, '10.0'
 use_frameworks!
-pod 'KFWatchKitAnimations', '~> 2.0'
+pod 'KFWatchKitAnimations', '~> 3.0'
 ```
 
 You will need to import KFWatchKitAnimations everywhere you wish to use it:
@@ -100,7 +100,7 @@ Kiavash Faisali
 ## License
 KFWatchKitAnimations is available under the MIT license.
 
-Copyright (c) 2016 Kiavash Faisali
+Copyright (c) 2017 Kiavash Faisali
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

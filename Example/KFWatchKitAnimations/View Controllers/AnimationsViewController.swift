@@ -50,7 +50,7 @@ final class AnimationsViewController: UIViewController {
         self.heroImageView.layer.cornerRadius = self.heroWidthConstraint.constant / 2
         
         self.circle = CAShapeLayer()
-        self.circle.path = UIBezierPath(arcCenter: CGPoint(x: self.watchViewWidthConstraint.constant/2, y: self.watchViewHeightConstraint.constant/2), radius: 50, startAngle: CGFloat(-M_PI_2), endAngle: CGFloat(3.0 * M_PI_2), clockwise: true).cgPath
+        self.circle.path = UIBezierPath(arcCenter: CGPoint(x: self.watchViewWidthConstraint.constant/2, y: self.watchViewHeightConstraint.constant/2), radius: 50, startAngle: CGFloat(-Double.pi/2), endAngle: CGFloat(3.0 * Double.pi/2), clockwise: true).cgPath
         self.circle.fillColor = nil
         self.circle.strokeColor = UIColor(red: 180/255.0, green: 1.0, blue: 167/255.0, alpha: 1.0).cgColor
         self.circle.lineWidth = 2
@@ -134,11 +134,11 @@ final class AnimationsViewController: UIViewController {
         }
     }
     
-    func refreshText() {
+    @objc func refreshText() {
         let previousCharacterLocation = (self.currentCharacterLocation - 1 + self.attributedString.length) % self.attributedString.length
         
-        self.attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.yellow, range: NSMakeRange(self.currentCharacterLocation, 1))
-        self.attributedString.removeAttribute(NSForegroundColorAttributeName, range: NSMakeRange(previousCharacterLocation, 1))
+        self.attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.yellow, range: NSMakeRange(self.currentCharacterLocation, 1))
+        self.attributedString.removeAttribute(NSAttributedStringKey.foregroundColor, range: NSMakeRange(previousCharacterLocation, 1))
         self.watchKitAnimationsLabel.attributedText = self.attributedString
         
         self.currentCharacterLocation = (self.currentCharacterLocation + 1) % self.attributedString.length
