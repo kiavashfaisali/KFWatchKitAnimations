@@ -2,9 +2,6 @@
 
 KFWatchKitAnimations provides an extremely easy-to-use tool for  Watch developers with which they can create gorgeous, smooth 60 FPS animations in a way that is highly optimized for WatchKit by recording arbitrary animations from the iOS Simulator.
 
-Click the image below to be taken to a short introduction video.
-[![KFWatchKitAnimations](http://img.youtube.com/vi/tex2zZXR0M8/0.jpg)](https://www.youtube.com/watch?v=tex2zZXR0M8)
-
 Please also check out [KFSwiftImageLoader](https://github.com/kiavashfaisali/KFSwiftImageLoader) for an extremely high-performance, lightweight, and energy-efficient pure Swift async web image loader with memory and disk caching for iOS and  Watch.
 
 ## Note
