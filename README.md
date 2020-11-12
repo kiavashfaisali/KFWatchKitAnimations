@@ -4,10 +4,6 @@ KFWatchKitAnimations provides an extremely easy-to-use tool for  Watch develo
 
 Please also check out [KFSwiftImageLoader](https://github.com/kiavashfaisali/KFSwiftImageLoader) for an extremely high-performance, lightweight, and energy-efficient pure Swift async web image loader with memory and disk caching for iOS and  Watch.
 
-## Note
-
- Watch example app coming October 16th!
-
 ## The Problem
 Currently, a developer seeking to create animations for  Watch will require the aid of a talented designer that can break down an animation into individual snapshot images of the animation in progress, which when stitched together form the illusion of a continuous, high frame-rate animation.
 
@@ -97,7 +93,7 @@ Kiavash Faisali
 ## License
 KFWatchKitAnimations is available under the MIT license.
 
-Copyright (c) 2016 Kiavash Faisali
+Copyright (c) 2020 Kiavash Faisali
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
